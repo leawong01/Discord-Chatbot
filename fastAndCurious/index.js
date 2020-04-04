@@ -21,51 +21,53 @@ module.exports.q1 = function q1(channel,heroList) {
             
             collector.on('collect', message => {
                 
-                
+                if(message.content !== '!start' && message.content !== '!end'){
                     
-                if(message.content.toUpperCase() === 'A1'){
-                    for(let key in    heroList){
-                        if(key === 'Superman' || key === 'Batman' || key === 'Aquaman' || key === 'Wonder Woman'
-                            || key === 'Flash' || key === 'Raven' || key === 'Catwoman'){   
-                            heroList[key]+=1;
-                        }    
-                        if(key === 'Joker' || key === 'Lex Luthor' || key === 'Deadshot'){
-                            heroList[key]-=1;
-                        }            
-                    }
-                }
-                else if(message.content.toUpperCase() === 'A2'){
-                    for(let key in    heroList){
-                        if(key === 'Joker' || key === 'Lex Luthor' || key === 'Deadshot'
-                            || key === 'Flash' || key === 'Raven' || key === 'Catwoman'){
-                            heroList[key]+=1;
-                        }
-                        if(key === 'Superman' || key === 'Batman' || key === 'Aquaman' || key === 'Wonder Woman'){   
-                            heroList[key]-=1;
-                        } 
-                    }
-    
-                }
-                else if(message.content.toUpperCase() === 'A3'){
-                    for(let key in    heroList){
-                        if(key === 'Flash' || key === 'Raven' || key === 'Catwoman'){
-                            heroList[key]+=2;
-                        }
-                        else{
-                            heroList[key]+=1;
+                    if(message.content.toUpperCase() === 'A1'){
+                        for(let key in    heroList){
+                            if(key === 'Superman' || key === 'Batman' || key === 'Aquaman' || key === 'Wonder Woman'
+                                || key === 'Flash' || key === 'Raven' || key === 'Catwoman'){   
+                                heroList[key]+=1;
+                            }    
+                            if(key === 'Joker' || key === 'Lex Luthor' || key === 'Deadshot'){
+                                heroList[key]-=1;
+                            }            
                         }
                     }
-    
-                }
-                else{
-                    channel.send("Please give a valid response");
+                    else if(message.content.toUpperCase() === 'A2'){
+                        for(let key in    heroList){
+                            if(key === 'Joker' || key === 'Lex Luthor' || key === 'Deadshot'
+                                || key === 'Flash' || key === 'Raven' || key === 'Catwoman'){
+                                heroList[key]+=1;
+                            }
+                            if(key === 'Superman' || key === 'Batman' || key === 'Aquaman' || key === 'Wonder Woman'){   
+                                heroList[key]-=1;
+                            } 
+                        }
+        
+                    }
+                    else if(message.content.toUpperCase() === 'A3'){
+                        for(let key in    heroList){
+                            if(key === 'Flash' || key === 'Raven' || key === 'Catwoman'){
+                                heroList[key]+=2;
+                            }
+                            else{
+                                heroList[key]+=1;
+                            }
+                        }
+        
+                    }
+                    else{
+                        channel.send("Please give a valid response");
+                        collector.stop();
+                        resolve(q1(channel, heroList));
+                    }
+                    
                     collector.stop();
-                    resolve(q1(channel, heroList));
+                    resolve(heroList);
                 }
-                
-                collector.stop();
-                resolve(heroList);
             })
+        
         }catch(e){
             console.log(e);
         }
@@ -93,31 +95,33 @@ module.exports.q2 = function q2(channel,heroList){
             let collector = new Discord.MessageCollector(channel, filter);
             collector.on('collect', message => {
             
+                if(message.content !== '!start' && message.content !== '!end'){
                     
-                if(message.content.toUpperCase() === 'B1'){
-                    for(let key in    heroList){
-                        if(key === 'Lex Luthor' || key === 'Batman' || key === 'Deadshot' || key === 'Flash' 
-                            || key === 'Catwoman' || key === 'Joker' || key === 'Raven'){
-                            heroList[key]+=1;
+                    if(message.content.toUpperCase() === 'B1'){
+                        for(let key in    heroList){
+                            if(key === 'Lex Luthor' || key === 'Batman' || key === 'Deadshot' || key === 'Flash' 
+                                || key === 'Catwoman' || key === 'Joker' || key === 'Raven'){
+                                heroList[key]+=1;
+                            }
                         }
                     }
-                }
-                else if(message.content.toUpperCase() === 'B2'){
-                    for(let key in    heroList){
-                        if(key === 'Superman' || key === 'Wonder Woman' || key === 'Aquaman'){
-                            heroList[key]+=1;
+                    else if(message.content.toUpperCase() === 'B2'){
+                        for(let key in    heroList){
+                            if(key === 'Superman' || key === 'Wonder Woman' || key === 'Aquaman'){
+                                heroList[key]+=1;
+                            }
                         }
+        
                     }
-    
-                }
-                else{
-                    channel.send("Please give a valid response");
-                    collector.stop();
-                    resolve(q2(channel, heroList));
-                }
+                    else{
+                        channel.send("Please give a valid response");
+                        collector.stop();
+                        resolve(q2(channel, heroList));
+                    }
 
-                collector.stop();
-                resolve(heroList);
+                    collector.stop();
+                    resolve(heroList);
+                }
             })
         }catch(e){
             console.log(e);
@@ -147,43 +151,45 @@ module.exports.q3 = function q3(channel,heroList){
             let collector = new Discord.MessageCollector(channel, filter);
             collector.on('collect', message => {
                 
+                if(message.content !== '!start' && message.content !== '!end'){
                     
-                if(message.content.toUpperCase() === 'C1'){
-                    for(let key in     heroList){
-                        if(key === 'Flash' || key === 'Raven'){
-                            heroList[key]+=1;
+                    if(message.content.toUpperCase() === 'C1'){
+                        for(let key in     heroList){
+                            if(key === 'Flash' || key === 'Raven'){
+                                heroList[key]+=1;
+                            }
                         }
                     }
-                }
-                else if(message.content.toUpperCase() === 'C2'){
-                    for(let key in     heroList){
-                        if(key === 'Batman' || key === 'Catwoman' || key === 'Deadshot'){
-                            heroList[key]+=1;
+                    else if(message.content.toUpperCase() === 'C2'){
+                        for(let key in     heroList){
+                            if(key === 'Batman' || key === 'Catwoman' || key === 'Deadshot'){
+                                heroList[key]+=1;
+                            }
                         }
                     }
-                }
-                else if(message.content.toUpperCase() === 'C3'){
-                    for(let key in     heroList){
-                        if(key === 'Superman' || key === 'Wonder Woman' || key === 'Aquaman'){
-                            heroList[key]+=1;
+                    else if(message.content.toUpperCase() === 'C3'){
+                        for(let key in     heroList){
+                            if(key === 'Superman' || key === 'Wonder Woman' || key === 'Aquaman'){
+                                heroList[key]+=1;
+                            }
                         }
                     }
-                }
-                else if(message.content.toUpperCase() === 'C4'){
-                    for(let key in     heroList){
-                        if(key === 'Joker' || key === 'Lex Luthor'){
-                            heroList[key]+=1;
+                    else if(message.content.toUpperCase() === 'C4'){
+                        for(let key in     heroList){
+                            if(key === 'Joker' || key === 'Lex Luthor'){
+                                heroList[key]+=1;
+                            }
                         }
                     }
-                }
-                else{
-                    channel.send("Please give a valid response");
-                    collector.stop();
-                    resolve(q3(channel, heroList));
-                }
+                    else{
+                        channel.send("Please give a valid response");
+                        collector.stop();
+                        resolve(q3(channel, heroList));
+                    }
 
-                collector.stop();
-                resolve(heroList);
+                    collector.stop();
+                    resolve(heroList);
+                }
              })
         
         }catch(e){
@@ -213,39 +219,40 @@ module.exports.q4 = function q4(channel,heroList){
             const filter = m => !m.author.bot;
             let collector = new Discord.MessageCollector(channel, filter,)
             collector.on('collect', message => {
-            
+               
+                if(message.content !== '!start' && message.content !== '!end'){
+                 
+                    if(message.content.toUpperCase() === 'D1'){
+                        for(let key in    heroList){
+                            if(key === 'Flash'){
+                                heroList[key]+=1;
+                            }
+                        }
+                    }
+                    else if(message.content.toUpperCase() === 'D2'){
+                        for(let key in   heroList){
+                            if(key === 'Batman' || key === 'Superman' || key === 'Aquaman' || key === 'Wonder Woman' 
+                                || key === 'Joker' || key === 'Lex Luthor' || key === 'Raven'){
+                                heroList[key]+=1;
+                            }
+                        }
+                    }
+                    else if(message.content.toUpperCase() === 'D3'){
+                        for(let key in   heroList){
+                            if(key === 'Catwoman' || key === 'Deadshot'){
+                                heroList[key]+=1;
+                            }
+                        }
+                    }
+                    else{
+                        channel.send("Please give a valid response");
+                        collector.stop();
+                        resolve(q4(channel, heroList));
+                    }
                     
-                if(message.content.toUpperCase() === 'D1'){
-                    for(let key in    heroList){
-                        if(key === 'Flash'){
-                            heroList[key]+=1;
-                        }
-                    }
-                }
-                else if(message.content.toUpperCase() === 'D2'){
-                    for(let key in   heroList){
-                        if(key === 'Batman' || key === 'Superman' || key === 'Aquaman' || key === 'Wonder Woman' 
-                            || key === 'Joker' || key === 'Lex Luthor' || key === 'Raven'){
-                            heroList[key]+=1;
-                        }
-                    }
-                }
-                else if(message.content.toUpperCase() === 'D3'){
-                    for(let key in   heroList){
-                        if(key === 'Catwoman' || key === 'Deadshot'){
-                            heroList[key]+=1;
-                        }
-                    }
-                }
-                else{
-                    channel.send("Please give a valid response");
                     collector.stop();
-                    resolve(q4(channel, heroList));
+                    resolve(heroList);
                 }
-                
-                collector.stop();
-                resolve(heroList);
-    
             })
         }catch(e){
             console.log(e);
@@ -275,38 +282,39 @@ module.exports.q5 = function q5(channel,heroList){
             let collector = new Discord.MessageCollector(channel, filter);
             collector.on('collect', message => {
             
-                    
-                if(message.content.toUpperCase() === 'E1'){
-                    for(let key in    heroList){
-                        if(key === 'Flash' || key === 'Batman' || key === 'Catwoman' || key === 'Joker' 
-                            || key === 'Lex Luthor' || key === 'Deadshot'){
-                            heroList[key]+=1;
-                        }
-                    }
-                }
-                else if(message.content.toUpperCase() === 'E2'){
-                    for(let key in    heroList){
-                        if(key === 'Superman' || key === 'Aquaman'){
-                            heroList[key]+=1;
-                        }
-                    }
-                }
-                else if(message.content.toUpperCase() === 'E3'){
-                    for(let key in    heroList){
-                        if(key === 'Wonder Woman' || key === 'Raven'){
-                            heroList[key]+=1;
-                        }
-                    }
-                }
-                else{
-                    channel.send("Please give a valid response");
-                    collector.stop();
-                    resolve(q5(channel, heroList));
-                }
+                if(message.content !== '!start' && message.content !== '!end'){
 
-                collector.stop();
-                resolve(heroList);
-    
+                    if(message.content.toUpperCase() === 'E1'){
+                        for(let key in    heroList){
+                            if(key === 'Flash' || key === 'Batman' || key === 'Catwoman' || key === 'Joker' 
+                                || key === 'Lex Luthor' || key === 'Deadshot'){
+                                heroList[key]+=1;
+                            }
+                        }
+                    }
+                    else if(message.content.toUpperCase() === 'E2'){
+                        for(let key in    heroList){
+                            if(key === 'Superman' || key === 'Aquaman'){
+                                heroList[key]+=1;
+                            }
+                        }
+                    }
+                    else if(message.content.toUpperCase() === 'E3'){
+                        for(let key in    heroList){
+                            if(key === 'Wonder Woman' || key === 'Raven'){
+                                heroList[key]+=1;
+                            }
+                        }
+                    }
+                    else{
+                        channel.send("Please give a valid response");
+                        collector.stop();
+                        resolve(q5(channel, heroList));
+                    }
+
+                    collector.stop();
+                    resolve(heroList);
+                }    
             })
         }catch(e){
             console.log(e);
@@ -337,51 +345,52 @@ module.exports.q6 = function q6(channel,heroList){
             let collector = new Discord.MessageCollector(channel, filter);
             collector.on('collect', message => {
             
+                if(message.content !== '!start' && message.content !== '!end'){
+
+                    if(message.content.toUpperCase() === 'F1'){
+                        for(let key in    heroList){
+                            if(key === 'Superman'){
+                                heroList[key]+=1;
+                            }
+                        }
+                    }
+                    else if(message.content.toUpperCase() === 'F2'){
+                        for(let key in    heroList){
+                            if(key === 'Wonder Woman' || key === 'Aquaman' || key === 'Raven'){
+                                heroList[key]+=1;
+                            }
+                        }
+                    }
+                    else if(message.content.toUpperCase() === 'F3'){
+                        for(let key in    heroList){
+                            if(key === 'Catwoman' || key === 'Flash'){
+                                heroList[key]+=1;
+                            }
+                        }
+                    }
+                    else if(message.content.toUpperCase() === 'F4'){
+                        for(let key in    heroList){
+                            if(key === 'Joker' || key === 'Deadshot'){
+                                heroList[key]+=1;
+                            }
+                        }
+                    }
+                    else if(message.content.toUpperCase() === 'F5'){
+                        for(let key in    heroList){
+                            if(key === 'Batman' || key === 'Lex Luthor'){
+                                heroList[key]+=1;
+                            }
+                        }
+                    }
+                    else{
+                        channel.send("Please give a valid response");
+                        collector.stop();
+                        resolve(q6(channel, heroList));
+                    }
                     
-                if(message.content.toUpperCase() === 'F1'){
-                    for(let key in    heroList){
-                        if(key === 'Superman'){
-                            heroList[key]+=1;
-                        }
-                    }
-                }
-                else if(message.content.toUpperCase() === 'F2'){
-                    for(let key in    heroList){
-                        if(key === 'Wonder Woman' || key === 'Aquaman' || key === 'Raven'){
-                            heroList[key]+=1;
-                        }
-                    }
-                }
-                else if(message.content.toUpperCase() === 'F3'){
-                    for(let key in    heroList){
-                        if(key === 'Catwoman' || key === 'Flash'){
-                            heroList[key]+=1;
-                        }
-                    }
-                }
-                else if(message.content.toUpperCase() === 'F4'){
-                    for(let key in    heroList){
-                        if(key === 'Joker' || key === 'Deadshot'){
-                            heroList[key]+=1;
-                        }
-                    }
-                }
-                else if(message.content.toUpperCase() === 'F5'){
-                    for(let key in    heroList){
-                        if(key === 'Batman' || key === 'Lex Luthor'){
-                            heroList[key]+=1;
-                        }
-                    }
-                }
-                else{
-                    channel.send("Please give a valid response");
                     collector.stop();
-                    resolve(q6(channel, heroList));
+                    resolve(heroList);
                 }
-                
-                collector.stop();
-                resolve(heroList);
-    
             })
         }catch(e){
             console.log(e);
