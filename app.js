@@ -49,8 +49,9 @@ bot.on('message', msg => {
         }
         if(msg.content === '!end'){
             msg.channel.send("See you Soon For Great Adventures!");
+            (process.exit();
 
-            process.exit()
+            
         }
 
         if(msg.content === 'help'){
@@ -85,21 +86,23 @@ function askMe(channel, round = 1){
     let collector = new Discord.MessageCollector(channel, filter);
     collector.on('collect', message => {
         matcher(message.content, cb =>{
-            if(Object.keys(cb).length === 0 && message.content !== '!end' && message.content!== '!start'){
-                message.channel.send("Sorry, I don't understand. Please try again.");
-                collector.stop();
-                askMe(channel);                    
-            }
-            else{
-                collector.stop();
-                if(cb.entities.name !== undefined)
-                {
-                    heroInfo(message.channel,cb.entities.name,cb.intent);                                
-                }
-                else{
-                    message.channel.send("Please give a feature and a name in this order")
+            if(message.content !== '!end' && message.content!== '!start'){
+                if(Object.keys(cb).length === 0){
+                    message.channel.send("Sorry, I don't understand. Please try again.");
                     collector.stop();
                     askMe(channel);                    
+                }
+                else{
+                    collector.stop();
+                    if(cb.entities.name !== undefined)
+                    {
+                        heroInfo(message.channel,cb.entities.name,cb.intent);                                
+                    }
+                    else{
+                        message.channel.send("Please give a feature and a name in this order")
+                        collector.stop();
+                        askMe(channel);                    
+                    }
                 }
             }
         })

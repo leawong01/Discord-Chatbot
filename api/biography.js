@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const apikey = process.env.API_TOKEN;s
+const apikey = require('./token');
 
 const get_biography = id => {
     return new Promise(async (resolve, reject) => {

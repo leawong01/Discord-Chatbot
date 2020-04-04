@@ -13,7 +13,7 @@ const listId = {
 
 const axios = require('axios');
 
-const apikey = process.env.API_TOKEN;
+const apikey = require('./token');
 
 const get_image = name => {
     return new Promise(async (resolve, reject) => {
