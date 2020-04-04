@@ -49,7 +49,7 @@ bot.on('message', msg => {
         }
         if(msg.content === '!end'){
             msg.channel.send("See you Soon For Great Adventures!");
-            (process.exit();
+            process.exit();
 
             
         }
