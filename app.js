@@ -50,8 +50,7 @@ bot.on('message', msg => {
         if(msg.content === '!end'){
             msg.channel.send("See you Soon For Great Adventures!");
             process.exit();
-
-            
+             
         }
 
         if(msg.content === 'help'){
@@ -86,7 +85,8 @@ function askMe(channel, round = 1){
     let collector = new Discord.MessageCollector(channel, filter);
     collector.on('collect', message => {
         matcher(message.content, cb =>{
-            if(message.content !== '!end' && message.content!== '!start'){
+            if(message.content !== '!end' && message.content!== '!start')
+            {
                 if(Object.keys(cb).length === 0){
                     message.channel.send("Sorry, I don't understand. Please try again.");
                     collector.stop();
@@ -107,7 +107,7 @@ function askMe(channel, round = 1){
             }
         })
     });
-}
+} 
 
 // If the user chooses to get all the info about a hero
 function getAllInfo(channel,id){
@@ -264,44 +264,47 @@ function again(channel,id,name,round = 1){
     const filter = m => !m.author.bot;
     let collector = new Discord.MessageCollector(channel, filter);
     collector.on('collect', message => {
-        matcher(message.content, async cb =>{
-            if(Object.keys(cb).length === 0 && message.content !== '!end' && message.content!== '!start'){
-                message.channel.send("Sorry, I don't understand. Please try again.\n"
-                +"(remark: enter'!end' if you wanna leave \n"
-                +"and '!start' if you wanna go back to the menu)");
-                collector.stop();
-                again(channel,id);                    
-            }
-            else{
-                if(cb.intent === 'all'){
-                    await getAllInfo(channel,id)
-                }
-                if(cb.intent === 'sug_appearance'){
-                    await get_appearance(channel,id)
-                } 
-                if(cb.intent === 'sug_powerstats'){
-                    await get_powerstats(channel,id)
-                } 
-                if(cb.intent === 'sug_biography'){
-                    await get_biography(channel,id)
-                } 
-                if(cb.intent === 'sug_occupation'){
-                    await get_occupation(channel,id)
+        if(message.content !== '!end' && message.content!== '!start'){
+            matcher(message.content, async cb =>{
+                if(Object.keys(cb).length === 0){
+                    message.channel.send("Sorry, I don't understand. Please try again.\n"
+                    +"(remark: enter'!end' if you wanna leave \n"
+                    +"and '!start' if you wanna go back to the menu)");
+                    collector.stop();
+                    again(channel,id);                    
                 }
                 else{
-                    channel.send(":confounded: I didn't understand you \nPlease just write the name of the category or \n"
-                    +"'!end' if you wanna leave \n"
-                    +"'!start' if you wanna go back to the menu")
+                    if(cb.intent === 'all'){
+                        await getAllInfo(channel,id)
+                    }
+                    if(cb.intent === 'sug_appearance'){
+                        await get_appearance(channel,id)
+                    } 
+                    if(cb.intent === 'sug_powerstats'){
+                        await get_powerstats(channel,id)
+                    } 
+                    if(cb.intent === 'sug_biography'){
+                        await get_biography(channel,id)
+                    } 
+                    if(cb.intent === 'sug_occupation'){
+                        await get_occupation(channel,id)
+                    }
+                    else{
+                        channel.send(":confounded: I didn't understand you \nPlease just write the name of the category or \n"
+                        +"'!end' if you wanna leave \n"
+                        +"'!start' if you wanna go back to the menu")
+                    }
+                    channel.send("Do you want to have other informations about " + name + "?")
                 }
-                channel.send("Do you want to have other informations about " + name + "?")
-                if(message.content.toLowerCase() === 'yes'){
-                    again(channel,id,name,0);
-                }
-                else if(message.content.toLowerCase() === 'no'){
-                    collector.stop()
-                }  
+            })
+            if(message.content.toLowerCase() === 'yes'){
+                again(channel,id,name,0);
             }
-        })
+            if(message.content.toLowerCase() === 'no'){
+                collector.stop()
+            }     
+            
+        }
     })
 
 

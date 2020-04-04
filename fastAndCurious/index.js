@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-module.exports.q1 = function (channel,heroList) {
+module.exports.q1 = function q1(channel,heroList) {
 
     return new Promise(resolve => {
         try{
@@ -74,7 +74,7 @@ module.exports.q1 = function (channel,heroList) {
     
 }
 
-module.exports.q2 = function (channel,heroList){
+module.exports.q2 = function q2(channel,heroList){
     return new Promise(resolve => {
         try{
             
@@ -126,7 +126,7 @@ module.exports.q2 = function (channel,heroList){
     
 }
 
-module.exports.q3 = function (channel,heroList){
+module.exports.q3 = function q3(channel,heroList){
     return new Promise(resolve => {
         try{
             
@@ -194,7 +194,7 @@ module.exports.q3 = function (channel,heroList){
     
 }
 
-module.exports.q4 = function (channel,heroList){
+module.exports.q4 = function q4(channel,heroList){
     return new Promise(resolve => {
         try{
             
@@ -255,7 +255,7 @@ module.exports.q4 = function (channel,heroList){
     
 }
 
-module.exports.q5 = function (channel,heroList){
+module.exports.q5 = function q5(channel,heroList){
     return new Promise(resolve => {
         try{
             
@@ -316,7 +316,7 @@ module.exports.q5 = function (channel,heroList){
     
 }
 
-module.exports.q6 = function (channel,heroList){
+module.exports.q6 = function q6(channel,heroList){
     return new Promise(resolve => {
         try{
                 const embed = new Discord.MessageEmbed()
